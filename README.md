@@ -2,7 +2,7 @@
 ---
 # Academy of Interactive Entertainment
 
-**Student:** < Your Name >
+**Student:** James Mills
 
 **Student Id:** < Your student Id >
 
