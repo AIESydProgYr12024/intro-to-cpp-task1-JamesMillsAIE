@@ -1,20 +1,21 @@
 #include "Utilities.h"
 
-#include <cmath>
-
-int BinarySearch(int _arr[ARRAY_SIZE], int _end, int _searchValue)
+int* BinarySearch(int* _arr, int _count, int _searchValue)
 {
-	int start = _arr[0];
-	int mid = _arr[_end / 2];
+	int* start = _arr;
+	int* mid = start + _count / 2;
 
-	if (_end == 0)
-		return INT_MAX;
+	if (_count == 0)
+		return nullptr;
 
-	if (mid == _searchValue)
+	if (*mid == _searchValue)
 		return mid;
 
-	if (_searchValue < mid)
-		return INT_MAX;
+	if (_searchValue < *mid)
+		return BinarySearch(start, _count / 2, _searchValue);
 
-	return INT_MAX;
+	if (_searchValue > *mid)
+		return BinarySearch(mid, _count / 2, _searchValue);
+
+	return nullptr;
 }

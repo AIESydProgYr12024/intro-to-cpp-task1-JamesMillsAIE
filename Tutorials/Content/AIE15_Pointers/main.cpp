@@ -60,6 +60,30 @@ int main()
 	// Print out the value of someInt after the value has changed
 	std::cout << "============================" << std::endl;
 	std::cout << "SomeInt after PrintIntPtrAndChange is: " << someInt << std::endl;
+	std::cout << "============================" << std::endl;
+
+	// Re-initialise the first pointer to new memory
+	someIntPtr = new int(420);
+
+	// Print out the values/memory addresses of all 3 variables
+	std::cout << "Some Int Value is: " << someInt << std::endl;
+	std::cout << "Some Int Ptr Address is: " << someIntPtr << std::endl;
+	std::cout << "Some Int Ptr Value is: " << *someIntPtr << std::endl;
+	std::cout << "Some Other Int Ptr Address is: " << someOtherIntPtr << std::endl;
+	std::cout << "Some Other Int Ptr Value is: " << *someOtherIntPtr << std::endl;
+	std::cout << "============================" << std::endl;
+
+	// Delete the memory of the first pointer
+	delete someIntPtr;
+	someIntPtr = nullptr;
+
+	std::cout << "Some Int Ptr Address is: " << someIntPtr << std::endl;
+
+	someIntPtr = &someInt;
+	delete someIntPtr;
+
+	//std::cout << "Some Int Ptr Value is: " << *someIntPtr << std::endl;
+	std::cout << "Some Other Int Ptr Value is: " << *someOtherIntPtr << std::endl;
 
 	return 0;
 }
