@@ -1,28 +1,37 @@
 #include "String.h"
 
+#include <iostream>
+
 String::String()
+	: m_buffer{ new char[1] }
 {
 }
 
 String::String(const char* _str)
+	: m_buffer{ new char[strlen(_str) + 1] }
 {
+	strcpy_s(m_buffer, strlen(_str) + 1, _str);
 }
 
 String::String(const String& _other)
+	: String(_other.m_buffer)
 {
 }
 
 String::String(String&& _other) noexcept
+	: m_buffer{ _other.m_buffer }
 {
+	_other.m_buffer = nullptr;
 }
 
 String::~String()
 {
+	delete[] m_buffer;
 }
 
 size_t String::Length() const
 {
-	return -1;
+	return strlen(m_buffer);
 }
 
 char& String::CharacterAt(size_t _index)
@@ -106,11 +115,18 @@ bool String::operator!=(const String& _other)
 
 String& String::operator=(const String& _str)
 {
+	m_buffer = new char[strlen(_str.m_buffer) + 1];
+	strcpy_s(m_buffer, strlen(_str.m_buffer) + 1, _str.m_buffer);
+
 	return *this;
 }
 
 String& String::operator=(String&& _str) noexcept
 {
+	m_buffer = _str.m_buffer;
+	_str.m_buffer = nullptr;
+
+	return *this;
 }
 
 char& String::operator[](size_t _index)

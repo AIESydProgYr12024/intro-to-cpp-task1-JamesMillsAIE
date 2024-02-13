@@ -45,7 +45,6 @@ public:
 	const char& operator[](size_t _index) const;
 
 private:
-	size_t m_length;
 	char* m_buffer;
 
 private:
